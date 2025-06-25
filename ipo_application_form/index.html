@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPO Application Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>IPO Application Form</h1>
+        <p>Invest in the next big thing. Please fill out the form below to apply.</p>
+        
+        <form id="ipo-form" novalidate>
+            <div class="form-group">
+                <label for="investor-name">Full Name</label>
+                <input type="text" id="investor-name" name="investorName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bid-quantity">Bid Quantity (Lots)</label>
+                <input type="number" id="bid-quantity" name="bidQuantity" placeholder="e.g., 15" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bid-price">Bid Price (per share)</label>
+                <input type="number" id="bid-price" name="bidPrice" placeholder="e.g., 541" required>
+                <div class="cut-off-group">
+                    <input type="checkbox" id="cut-off-price" name="cutOffPrice">
+                    <label for="cut-off-price">Apply at Cut-off Price</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="upi-id">UPI ID for Payment</label>
+                <input type="text" id="upi-id" name="upiId" placeholder="yourname@bank" required>
+            </div>
+
+            <div class="form-group terms">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I have read the Red Herring Prospectus (RHP) and accept the terms and conditions.</label>
+            </div>
+
+            <button type="submit" id="submit-btn">Submit Application</button>
+        </form>
+
+        <div id="message-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

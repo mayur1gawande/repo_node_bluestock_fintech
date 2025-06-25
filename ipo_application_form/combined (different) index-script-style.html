@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPO Application Form</title>
+    
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Axios for API calls -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+        /* Custom styles to complement Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Custom focus ring color */
+        .focus-ring-indigo {
+            --tw-ring-opacity: 1;
+            --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity));
+        }
+
+        /* Custom style for disabled inputs */
+        input:disabled {
+            cursor: not-allowed;
+            background-color: #e5e7eb; /* gray-200 */
+        }
+        
+        /* Custom styling for checkboxes */
+        .custom-checkbox {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 0.25rem;
+            border: 2px solid #d1d5db; /* gray-300 */
+            transition: all 0.2s;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .custom-checkbox:checked {
+            background-color: #4f46e5; /* indigo-600 */
+            border-color: #4f46e5; /* indigo-600 */
+        }
+        .custom-checkbox:checked::after {
+            content: '✓';
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white p-6 sm:p-8 md:p-10 rounded-2xl shadow-xl w-full max-w-lg border border-slate-200">
+        
+        <!-- Form Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-slate-900">IPO Application</h1>
+            <p class="text-slate-500 mt-2">Invest in the next big thing. Fill out the form to apply.</p>
+        </div>
+        
+        <!-- The Form -->
+        <form id="ipo-form" novalidate>
+            
+            <!-- Full Name -->
+            <div class="mb-5">
+                <label for="investor-name" class="block mb-2 text-sm font-medium text-slate-600">Full Name</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    </div>
+                    <input type="text" id="investor-name" name="investorName" placeholder="Enter your full name" required class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 p-3 transition duration-200">
+                </div>
+            </div>
+
+            <!-- Bid Quantity -->
+            <div class="mb-5">
+                <label for="bid-quantity" class="block mb-2 text-sm font-medium text-slate-600">Bid Quantity (Lots)</label>
+                <div class="relative">
+                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg class="w-5 h-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-9h6" /></svg>
+                    </div>
+                    <input type="number" id="bid-quantity" name="bidQuantity" placeholder="e.g., 15" required class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 p-3 transition duration-200">
+                </div>
+            </div>
+
+            <!-- Bid Price -->
+            <div class="mb-5">
+                <label for="bid-price" class="block mb-2 text-sm font-medium text-slate-600">Bid Price (per share)</label>
+                 <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg class="w-5 h-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.784c0 1.135.845 2.098 1.976 2.192.341.026.682.038 1.024.038s.683-.012 1.024-.038c1.13-.094 1.976-1.057 1.976-2.192v-2.784c0-1.135-.845-2.098-1.976-2.192A48.424 48.424 0 0 0 12 8.25Z" /></svg>
+                    </div>
+                    <input type="number" id="bid-price" name="bidPrice" placeholder="e.g., 541" required class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 p-3 transition duration-200">
+                </div>
+                <div class="flex items-center mt-3">
+                    <input type="checkbox" id="cut-off-price" name="cutOffPrice" class="custom-checkbox">
+                    <label for="cut-off-price" class="ml-2 text-sm text-slate-600 cursor-pointer">Apply at Cut-off Price</label>
+                </div>
+            </div>
+
+            <!-- UPI ID -->
+            <div class="mb-6">
+                <label for="upi-id" class="block mb-2 text-sm font-medium text-slate-600">UPI ID for Payment</label>
+                 <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg class="w-5 h-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15A2.25 2.25 0 0 0 2.25 6.75v10.5A2.25 2.25 0 0 0 4.5 19.5Z" /></svg>
+                    </div>
+                    <input type="text" id="upi-id" name="upiId" placeholder="yourname@bank" required class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 p-3 transition duration-200">
+                </div>
+            </div>
+
+            <!-- Terms & Conditions -->
+            <div class="mb-6">
+                <div class="flex items-start">
+                    <input type="checkbox" id="terms" name="terms" required class="custom-checkbox mt-0.5">
+                    <label for="terms" class="ml-2 text-sm text-slate-600 cursor-pointer">I have read the Red Herring Prospectus (RHP) and accept the terms and conditions.</label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submit-btn" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus-ring-indigo font-semibold rounded-lg text-md px-5 py-3.5 text-center transition-all duration-300 transform hover:scale-105 disabled:bg-indigo-300 disabled:cursor-not-allowed disabled:transform-none">
+                Submit Application
+            </button>
+        </form>
+
+        <!-- Message Container -->
+        <div id="message-container" class="mt-6 text-center text-md font-medium"></div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- SELECT FORM ELEMENTS ---
+        const form = document.getElementById('ipo-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const messageContainer = document.getElementById('message-container');
+        
+        // --- INPUT FIELDS ---
+        const investorName = document.getElementById('investor-name');
+        const bidQuantity = document.getElementById('bid-quantity');
+        const bidPrice = document.getElementById('bid-price');
+        const cutOffCheckbox = document.getElementById('cut-off-price');
+        const upiId = document.getElementById('upi-id');
+        const termsCheckbox = document.getElementById('terms');
+
+        // --- FORM SUBMISSION HANDLER ---
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+            
+            // 1. Clear previous messages and validation errors
+            clearErrors();
+            messageContainer.innerHTML = '';
+            
+            // 2. Perform validation
+            if (!validateForm()) {
+                return; // Stop if validation fails
+            }
+            
+            // 3. Disable button and show loading state to prevent multiple submissions
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            // 4. Prepare data for API
+            const formData = {
+                investorName: investorName.value,
+                bidQuantity: parseInt(bidQuantity.value, 10),
+                bidPrice: cutOffCheckbox.checked ? 'CUT-OFF' : parseFloat(bidPrice.value),
+                upiId: upiId.value,
+            };
+            
+            // 5. Connect form with API endpoint using Axios
+            try {
+                // ** IMPORTANT **
+                // This is a placeholder API endpoint. It will intentionally fail.
+                // The logic then falls into the catch block to simulate a successful response for this demo.
+                const apiEndpoint = 'https://api.your-broker.com/v1/ipo-applications';
+
+                const response = await axios.post(apiEndpoint, formData);
+
+                // This part would run if the API call was genuinely successful.
+                displayMessage('Application submitted successfully!', 'success');
+                form.reset(); // Clear the form fields
+                cutOffCheckbox.dispatchEvent(new Event('change')); // Reset price field state
+
+            } catch (error) {
+                // This block runs because the API endpoint above is a placeholder.
+                // In a real-world scenario, this catches network or server errors (e.g., 400, 500).
+                console.error('API Submission Error:', error);
+                
+                // For demonstration purposes, we'll SIMULATE a successful submission here.
+                // In a real application, you would handle the actual error message from `error.response`.
+                setTimeout(() => {
+                    displayMessage('Demo: Application submitted successfully!', 'success');
+                    form.reset();
+                    cutOffCheckbox.dispatchEvent(new Event('change')); // Reset price field state
+                }, 1500); // Simulate a 1.5-second network delay
+                
+            } finally {
+                // This block runs whether the API call succeeds or fails.
+                // Re-enable the button after the simulated delay.
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Application';
+                }, 1500);
+            }
+        });
+
+        // --- VALIDATION LOGIC ---
+        function validateForm() {
+            let isValid = true;
+            
+            // Name validation
+            if (investorName.value.trim().length < 2) {
+                showError(investorName, 'Full name is required.');
+                isValid = false;
+            }
+
+            // Quantity validation
+            if (!bidQuantity.value || parseInt(bidQuantity.value, 10) <= 0) {
+                showError(bidQuantity, 'Bid quantity must be a positive number.');
+                isValid = false;
+            }
+            
+            // Price validation (only if cut-off is not checked)
+            if (!cutOffCheckbox.checked && (!bidPrice.value || parseFloat(bidPrice.value) <= 0)) {
+                showError(bidPrice, 'Bid price must be a positive number.');
+                isValid = false;
+            }
+            
+            // UPI ID validation (simple regex check for format)
+            const upiRegex = /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/;
+            if (!upiRegex.test(upiId.value)) {
+                showError(upiId, 'Please enter a valid UPI ID (e.g., yourname@bank).');
+                isValid = false;
+            }
+
+            // Terms and conditions validation
+            if (!termsCheckbox.checked) {
+                showError(termsCheckbox, 'You must accept the terms and conditions to proceed.');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // --- HELPER FUNCTIONS ---
+        function showError(input, message) {
+            // Add error classes to the input field
+            input.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+            input.classList.remove('border-slate-300', 'focus:ring-indigo-500', 'focus:border-indigo-500');
+
+            // Create and insert the error message
+            const errorSpan = document.createElement('span');
+            errorSpan.className = 'error-message text-red-600 text-xs mt-1';
+            errorSpan.textContent = message;
+            
+            // Find the parent container to append the error.
+            // For checkboxes, the structure is slightly different.
+            const parentContainer = input.type === 'checkbox' ? input.parentElement.parentElement : input.parentElement;
+            parentContainer.appendChild(errorSpan);
+        }
+
+        function clearErrors() {
+            // Remove all existing error messages
+            document.querySelectorAll('.error-message').forEach(msg => msg.remove());
+            
+            // Reset all input fields to their default border style
+            form.querySelectorAll('input').forEach(input => {
+                input.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                input.classList.add('border-slate-300', 'focus:ring-indigo-500', 'focus:border-indigo-500');
+            });
+        }
+        
+        function displayMessage(message, type) {
+            messageContainer.textContent = message;
+            if (type === 'success') {
+                messageContainer.className = 'mt-6 text-center text-md font-medium text-green-600';
+            } else {
+                messageContainer.className = 'mt-6 text-center text-md font-medium text-red-600';
+            }
+        }
+
+        // --- UX IMPROVEMENT ---
+        // If user checks 'cut-off', disable the price input field for a better experience.
+        cutOffCheckbox.addEventListener('change', () => {
+            bidPrice.disabled = cutOffCheckbox.checked;
+            if (cutOffCheckbox.checked) {
+                bidPrice.value = ''; // Clear value
+                clearErrors(); // Clear potential price errors when disabling
+            }
+        });
+    });
+    </script>
+
+</body>
+</html>
